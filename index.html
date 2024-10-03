@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishvaditya Luhach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+/*             font-family: 'Montserrat', sans-serif; */
+            font-family: 'Poppins', sans-serif;
+            /* background-color: #000; */
+            background-image: url('assets/background.png');
+            color: #fff;
+        }
+        nav {
+            background-color: #000;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px;
+            background-color: #000;
+            text-align: center;
+            margin-top: 60px; /* Offset for fixed navbar */
+        }
+        header img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.3em;
+            margin: 10px 0;
+            max-width: 1000px; /* Added this line to limit the width */
+            text-align: center; /* Added this line to center the text */
+        }
+        header .social-icons {
+            margin-top: 10px;
+        }
+        header .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+        }
+        .typing {
+            display: inline-block; /* Ensure it only takes as much space as needed */
+            text-align: center; /* Center align text */
+            width: auto; /* Adjust width as necessary */
+            margin: 0 auto; 
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 2em;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(90deg, #007CF0, #00DFD8, #7928CA, #FF0080);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: typing 2s steps(30, end), blink-caret .75s step-end infinite; 
+            transition: width 1.5s ease-in-out;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            text-align: center;
+            font-size: 2em;
+        }
+        .work-experience {
+            display: flex;
+            flex-direction: column;
+        }
+        .work-item {
+            display: flex;
+            margin-bottom: 40px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .work-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .work-left {
+            flex: 0 0 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .work-left img {
+            width: 400px;
+            height: 400px;
+        }
+        .work-right {
+            flex: 1;
+            padding-left: 20px;
+            align-self: flex-start;
+        }
+        .research-experience {
+            display: flex;
+            flex-direction: column;
+        }
+        .research-item {
+            display: flex;
+            margin-bottom: 40px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .research-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .research-left {
+            flex: 0 0 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .research-left img {
+            width: 400px;
+            height: 400px;
+        }
+        .research-right {
+            flex: 1;
+            padding-left: 20px;
+            align-self: flex-start;
+        }
+        .company-info {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .company-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .job-title {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+        .description {
+            font-size: 1em;
+            line-height: 1.4;
+            list-style-type: disc;
+            padding-left: 20px;
+            text-align: left;
+        }
+        @media screen and (max-width: 768px) {
+            .work-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .work-left {
+                margin-bottom: 20px;
+            }
+            .work-right {
+                padding-left: 0;
+            }
+            .research-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .research-left {
+                margin-bottom: 20px;
+            }
+            .research-right {
+                padding-left: 0;
+            }
+        }
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        .publications-tile {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .publications-tile:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .publications-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .publications-description {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .research-link {
+            color: #007CF0;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+        .project-tile {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-tile:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .project-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .project-description {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .project-link {
+            color: #007CF0;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#aboutme">Home</a></li>
+            <li><a href="#work-experience">Work Experience</a></li>
+            <li><a href="#research-experience">Research Experience</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+   <header> 
+    <div id="aboutme">
+        <img src="assets/image_self.jpeg" alt="Vishvaditya Luhach">
+        <h1>Vishvaditya Luhach</h1>
+        <div class="typing" id="typing-text">Data Scientist</div>
+        <p>
+            Hello there! I am a data scientist and artificial intelligence enthusiast and a published researcher with a deep-rooted interest in leveraging AI to solve real-world problems. My fascination with AI extends across various domains, such as computer vision, NLP and multi-modal models.
+        </p>
+        <p>
+            TBU
+        </p>
+        <p>
+            TBU
+        </p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/vishvaditya-luhach/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Vishvaditya" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:vishvadityaluhach@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</header>
+
+    <main>
+        <div class="section" id="work-experience">
+            <h2>Work Experience</h2>
+            <div class="work-experience">
+                <div class="work-item">
+                    <div class="work-left">
+                        <img src="assets/zs_logo.svg" alt="ZS Logo">
+                    </div>
+                    <div class="work-right">
+                        <div class="company-info">
+                            <p class="company-title">ZS</p>
+                            <p class="job-title">Decision Analyst Associate</p>
+                        </div>
+                        <ul class="description">
+                            <li>Designed an Artificial Neural Network (ANN) model with a custom loss function using 3 different metrics to overcome the limitation of having no ground truth for the predictions.</li>
+                            <li>Spearheaded a team in the development of an auto-encoder model for customer segmentation; incorporated the model in a SageMaker pipeline to extract and process data from Athena and run real time training and inference on the data to classify ~ 500,000 customers</li>
+                            <li>Implemented Non-Negative Matrix Factorization algorithm to predict channel affinity scores on a dataset of 100K health care
+                                providers, facilitating targeted customer acquisition</li>
+                            <li>Analyzed sales and advertising trends through Python and Excel for 5 leading cancer drugs, ensuring data accessibility for
+                                clients; resulting in 4 different marketing strategies across 3 geographies</li>
+                            <li>Recognized with the Pinnacle Performer Award for pioneering innovative, data-driven solutions to multiple clients across
+                                regions, propelling measurable business outcomes and enhancing client satisfaction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="research-experience">
+            <h2>Research Experience</h2>
+            <div class="research-experience">
+                <div class="research-item">
+                    <div class="research-left">
+                        <img src="assets/bit_logo.png" alt="BIT-Mesra Logo">
+                    </div>
+                    <div class="research-right">
+                        <div class="company-info">
+                            <p class="company-title">Birla Institute of Technology, Mesra</p>
+                            <p class="job-title">Research Assistant</p>
+                        </div>
+                        <ul class="description">
+                            <li>Collaborated with Dr. Gaurishanker Gupta to devise a novel methodology for the detection of crop diseases, focusing on the application of lightweight deep learning models for real-time agricultural use</li>
+                            <li>Conceptualized and implemented a transformer-based architecture with customized feature extraction techniques to classify crop diseases using the PlantVillage dataset with 30+ classes</li>
+                            <li>Optimized the model for deployment on low-power embedded devices by converting it to TensorFlow Lite (TFLite), reducing model’s storage size by 60% while maintaining high classification accuracy of ~98%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="research-item">
+                    <div class="research-left">
+                        <img src="assets/iit_indore_logo.png" alt="IIT-Indore Logo">
+                    </div>
+                    <div class="research-right">
+                        <div class="company-info">
+                            <p class="company-title">Indian Institute of Technology, Indore</p>
+                            <p class="job-title">Research Intern</p>
+                        </div>
+                        <ul class="description">
+                            <li>Worked under the guidance of Dr. Puneet Gupta on advanced image segmentation tasks involving Kvasir and
+                                CVC-Clinic DB medical image datasets, focusing on improving diagnostic accuracy for medical imaging</li>
+                            <li>Conducted comprehensive research on state-of-the-art image segmentation models, evaluating their applications
+                                in medical diagnosis and anomaly detection, particularly for gastrointestinal imaging</li>
+                            <li>Developed a hybrid deep learning model that integrated transformer architectures with convolutional neural
+                                networks (CNNs) to achieve semantic segmentation of medical images, enhancing both feature extraction and
+                                localization capabilities</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="research-item">
+                    <div class="research-left">
+                        <img src="assets/bit_logo.png" alt="BIT-Mesra Logo">
+                    </div>
+                    <div class="research-right">
+                        <div class="company-info">
+                            <p class="company-title">Birla Institute of Technology, Mesra</p>
+                            <p class="job-title">Research Intern</p>
+                        </div>
+                        <ul class="description">
+                            <li>Assisted Dr. Raju Poddar in developing a novel approach for the classification of retinal diseases, utilizing advanced transformer-based deep learning models</li>
+                            <li>Proposed and developed a hybrid ViT+SVM (Support Vector Machine) model, achieving a classification accuracy of ~94%, demonstrating significant potential for medical image classification in clinical settings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="publications">
+            <h2>Publications</h2>
+            <div class="publications-grid">
+                 <div class="publications-tile">
+                    <h3 class="publications-title">S. Jha, V. Luhach, G. S. Gupta, B. Singh, “Crop Disease Classification using Support Vector Machines with Green
+                        Chromatic Coordinate (GCC) and Attention-based feature extraction for IoT based Smart Agricultural Applications,”
+                        under review at <i>Computers and Electronics in Agriculture</i></h3>
+                    <a class="publications-link" href="https://arxiv.org/pdf/2311.00429" target="_blank">Link</a>
+                </div>
+
+                <div class="publications-tile">
+                    <h3 class="publications-title">S. Jha, V. Luhach, “Indian Peak Power Demand Forecasting: Transformer Based Implementation of Temporal
+                        Architecture,” presented at <i>IEEE Global Conference on Computing, Power and Communication Technologies
+                        (GlobConPT 2022).</i></h3>
+                    <a class="publications-link" href="https://ieeexplore.ieee.org/abstract/document/9938155" target="_blank">Link</a>
+                </div>
+
+                <div class="publications-tile">
+                    <h3 class="publications-title">S. Jha, V. Luhach, R. Poddar, “Retinal Malady Classification Using AI: A novel ViT-SVM combination architecture,”
+                        presented at <i>6th International Conference on Computing Methodologies and Communication (ICCMC 2022).</i></h3>
+                    <a class="publications-link" href="https://ieeexplore.ieee.org/abstract/document/9753876" target="_blank">Link</a>
+                </div>
+
+                <div class="publications-tile">
+                    <h3 class="publications-title">S. Jha, V. Luhach, V. Nath, “Power Transmission Line Classification through Artificial Intelligence: Application of
+                        Transfer Learning and Deep Convolutional Learning Techniques,” presented at <i>7th International Conference on
+                        Nanoelectronics, Circuits & Communication Systems (NCCS-2021).</i></h3>
+                    <!-- <a class="publication-link" href="" target="_blank"></a> -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const workItems = document.querySelectorAll(".work-item");
+            const researchItems = document.querySelectorAll(".research-item");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            workItems.forEach(item => {
+                observer.observe(item);
+            });
+            researchItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+    const typingTextElement = document.getElementById("typing-text");
+    const typingTexts = ["Data Scientist ", "Software Engineer ", "Analyst ","GenAI Enthusiast "];
+    let textIndex = 0;
+    let charIndex = 0;
+    let currentText = '';
+    let isDeleting = false;
+
+    function type() {
+        if (isDeleting) {
+            currentText = typingTexts[textIndex].substring(0, charIndex--);
+        } else {
+            currentText = typingTexts[textIndex].substring(0, charIndex++);
+        }
+
+        typingTextElement.textContent = currentText;
+
+        if (!isDeleting && charIndex === typingTexts[textIndex].length) {
+            isDeleting = true;
+            setTimeout(type, 1000); // Pause before deleting
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % typingTexts.length;
+            setTimeout(type, 500); // Pause before typing next word
+        } else {
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+    }
+
+    type();
+});
+    </script>
+</body>
+</html>
